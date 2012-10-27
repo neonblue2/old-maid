@@ -1,8 +1,4 @@
-#include "Deck.h"
-#include "Player.h"
-
-void deal(int playerNum, Player players[], Deck deck);
-void checkInGame(Player player[], int playerNum);
+#include "Dealer.h"
 
 using namespace std;
 
@@ -18,7 +14,7 @@ int main() {
 	
 	Player players[playerNum];
 	
-	deal(playerNum, players, deck);
+	Dealer::deal(playerNum, players, deck);
 	
 	players[0].printHand();
 	cout << endl;
@@ -33,7 +29,7 @@ int main() {
 				players[player].loseCard(chosenCard);
 				players[0].recieveCard(chosenCard);
 				cout << "You received the " << chosenCard << endl << endl;
-				checkInGame(players, playerNum);
+				Dealer::checkInGame(players, playerNum);
 				playerTurn = false;
 			} else {
 				cout << "That player is out of the game!" << endl;
@@ -48,7 +44,7 @@ int main() {
 			}
 			players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
 			cout << endl;
-			checkInGame(players, playerNum);
+			Dealer::checkInGame(players, playerNum);
 		} else if (command == "Done") {
 			for (int pN = 1; pN < playerNum; pN++) {
 				if (players[pN].isInGame()) {
@@ -59,7 +55,7 @@ int main() {
 					Card chosenCard = players[chosenPlayer].randCard();
 					players[chosenPlayer].loseCard(chosenCard);
 					players[pN].recieveCard(chosenCard);
-					checkInGame(players, playerNum);
+					Dealer::checkInGame(players, playerNum);
 					if (chosenPlayer == 0) {
 						cout << "You lost the " << chosenCard << endl;
 					}
@@ -69,7 +65,7 @@ int main() {
 								players[pN].specificCard(j));
 						}
 					}
-					checkInGame(players, playerNum);
+					Dealer::checkInGame(players, playerNum);
 				}
 			}
 			playerTurn = true;
@@ -99,36 +95,4 @@ int main() {
 	}
 	
 	return 0;
-}
-
-void deal(int playerNum, Player players[], Deck deck) {
-	//Divide the deck by the number of players and deal an equal number of cards to each
-	for (int i = 0; i < playerNum; i++) {
-		for (int j = i*(53/playerNum); j < (i+1)*(53/playerNum); j++) {
-			players[i].recieveCard(deck.cardLoc(j));
-		}
-	}
-	
-	//Determine how many cards are left over
-	int leftover = (int)(53/playerNum) * playerNum;
-	
-	//Deal the remaining cards
-	int i = 0;
-	while (leftover < 53) {
-		players[i].recieveCard(deck.cardLoc(leftover));
-		leftover++;
-		if (i < playerNum-1) {
-			i++;
-		} else {
-			i = 0;
-		}
-	}
-}
-
-void checkInGame(Player player[], int playerNum) {
-	for (int i = 0; i < playerNum; i++) {
-		if (player[i].cardsInHand() == 0) {
-			player[i].leaveGame();
-		}
-	}
 }
