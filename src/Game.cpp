@@ -43,11 +43,10 @@ Game::Game() {
 				}
 			} else if (command == "Place") {
 				int c1, c2;
-				cin >> c1 >> c2;
-				while (c1 > players[0].cardsInHand() || c2 > players[0].cardsInHand()) {
+				while (cin >> c1 >> c2
+						&& (c1 > players[0].cardsInHand() || c2 > players[0].cardsInHand())) {
 					cout << "Not a valid card." << endl << endl;
 					cout << "Place ";
-					cin >> c1 >> c2;
 				}
 				players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
 				cout << endl;
