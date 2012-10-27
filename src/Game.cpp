@@ -65,8 +65,8 @@ Game::Game() {
 						if (chosenPlayer == 0) {
 							cout << "You lost the " << chosenCard << endl;
 						}
-						for (int i = 0; i < 52; i++) {
-							for (int j = i+1; j < 53; j++) {
+						for (int i = 0; i < players[pN].cardsInHand()-1; i++) {
+							for (int j = i+1; j < players[pN].cardsInHand(); j++) {
 								players[pN].placePair(players[pN].specificCard(i),
 									players[pN].specificCard(j));
 							}
