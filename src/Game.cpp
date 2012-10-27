@@ -54,10 +54,10 @@ Game::Game() {
 			} else if (command == "Done") {
 				for (int pN = 1; pN < playerNum; pN++) {
 					if (players[pN].isInGame()) {
-						int chosenPlayer = rand() % playerNum;
-						while (chosenPlayer == pN || !players[chosenPlayer].isInGame()) {
+						int chosenPlayer;
+						do {
 							chosenPlayer = rand() % playerNum;
-						}
+						} while (chosenPlayer == pN || !players[chosenPlayer].isInGame());
 						Card chosenCard = players[chosenPlayer].randCard();
 						players[chosenPlayer].loseCard(chosenCard);
 						players[pN].recieveCard(chosenCard);
