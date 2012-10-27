@@ -75,8 +75,8 @@ int main() {
 			playerTurn = true;
 		}
 		if (players[0].isInGame()) { 
-			int playersIn;
-			for (int i = 0; i < playerNum; i++) {
+			int playersIn = 1;
+			for (int i = 1; i < playerNum; i++) {
 				if (players[i].isInGame()) {
 					playersIn++;
 				}
