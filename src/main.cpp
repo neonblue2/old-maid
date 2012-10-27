@@ -2,7 +2,6 @@
 #include "Player.h"
 
 void deal(int playerNum, Player players[], Deck deck);
-void gameOver(Player player[], int playerNum);
 void checkInGame(Player player[], int playerNum);
 
 using namespace std;
