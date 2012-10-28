@@ -49,11 +49,9 @@ void Player::leaveGame() {
 Card Player::randCard() {
 	Card card;
 	
-	while (card == "") {
-		int location = rand() % inHand;
-		card.setValue(hand[location].getValue());
-		card.setSuit(hand[location].getSuit());
-	}
+	int location = rand() % inHand;
+	card.setValue(hand[location].getValue());
+	card.setSuit(hand[location].getSuit());
 	
 	return card;
 }
