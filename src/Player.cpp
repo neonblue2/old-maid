@@ -27,7 +27,7 @@ void Player::placePair(Card c1, Card c2) {
 
 void Player::loseCard(Card card) {
 	int loc;
-	for (int i = 0; i < cardsInHand(); i++) {
+	for (int i = 0; i < inHand; i++) {
 		if (hand[i] == card) {
 			hand[i].setSuit("");
 			hand[i].setValue("");
