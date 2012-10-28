@@ -33,29 +33,7 @@ Game::Game() {
 		} else if (command == "Place") {
 			place(players, playerNum);
 		} else if (command == "Done") {
-			for (int pN = 1; pN < playerNum; pN++) {
-				if (players[pN].isInGame()) {
-					int chosenPlayer;
-					do {
-						chosenPlayer = rand() % playerNum;
-					} while (chosenPlayer == pN || !players[chosenPlayer].isInGame());
-					Card chosenCard = players[chosenPlayer].randCard();
-					players[chosenPlayer].loseCard(chosenCard);
-					players[pN].recieveCard(chosenCard);
-					Dealer::checkInGame(players, playerNum);
-					if (chosenPlayer == 0) {
-						cout << "You lost the " << chosenCard << endl;
-					}
-					for (int i = 0; i < players[pN].cardsInHand()-1; i++) {
-						for (int j = i+1; j < players[pN].cardsInHand(); j++) {
-							players[pN].placePair(players[pN].specificCard(i),
-								players[pN].specificCard(j));
-						}
-					}
-					Dealer::checkInGame(players, playerNum);
-				}
-			}
-			playerTurn = true;
+			done(players, playerNum, &playerTurn);
 		}
 		if (players[0].isInGame()) {
 			int playersIn = 1;
@@ -107,4 +85,30 @@ void Game::place(Player players[], int playerNum) {
 	players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
 	cout << endl;
 	Dealer::checkInGame(players, playerNum);
+}
+
+void Game::done(Player players[], int playerNum, bool* playerTurn) {
+	for (int pN = 1; pN < playerNum; pN++) {
+		if (players[pN].isInGame()) {
+			int chosenPlayer;
+			do {
+				chosenPlayer = rand() % playerNum;
+			} while (chosenPlayer == pN || !players[chosenPlayer].isInGame());
+			Card chosenCard = players[chosenPlayer].randCard();
+			players[chosenPlayer].loseCard(chosenCard);
+			players[pN].recieveCard(chosenCard);
+			Dealer::checkInGame(players, playerNum);
+			if (chosenPlayer == 0) {
+				cout << "You lost the " << chosenCard << endl;
+			}
+			for (int i = 0; i < players[pN].cardsInHand()-1; i++) {
+				for (int j = i+1; j < players[pN].cardsInHand(); j++) {
+					players[pN].placePair(players[pN].specificCard(i),
+						players[pN].specificCard(j));
+				}
+			}
+			Dealer::checkInGame(players, playerNum);
+		}
+	}
+	*playerTurn = true;
 }

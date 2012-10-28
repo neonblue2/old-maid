@@ -17,6 +17,7 @@ public:
 private:
 	void take(Player players[], int playerNum, bool* playerTurn);
 	void place(Player players[], int playerNum);
+	void done(Player players[], int playerNum, bool* playerTurn);
 };
 
 #endif /* GAME_H_ */
