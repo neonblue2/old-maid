@@ -29,18 +29,7 @@ Game::Game() {
 	while (cin >> command) {
 		cout << endl;
 		if (command == "Take" && playerTurn) {
-			int player;
-			cin >> player;
-			if (players[player].isInGame()) {
-				Card chosenCard = players[player].randCard();
-				players[player].loseCard(chosenCard);
-				players[0].recieveCard(chosenCard);
-				cout << "You received the " << chosenCard << endl << endl;
-				Dealer::checkInGame(players, playerNum);
-				playerTurn = false;
-			} else {
-				cout << "That player is out of the game!" << endl;
-			}
+			take(players, playerNum, &playerTurn);
 		} else if (command == "Place") {
 			place(players, playerNum);
 		} else if (command == "Done") {
@@ -90,6 +79,21 @@ Game::Game() {
 			cout << "You didn't lose the game!" << endl;
 			break;
 		}
+	}
+}
+
+void Game::take(Player players[], int playerNum, bool* playerTurn) {
+	int player;
+	cin >> player;
+	if (players[player].isInGame()) {
+		Card chosenCard = players[player].randCard();
+		players[player].loseCard(chosenCard);
+		players[0].recieveCard(chosenCard);
+		cout << "You received the " << chosenCard << endl << endl;
+		Dealer::checkInGame(players, playerNum);
+		*playerTurn = false;
+	} else {
+		cout << "That player is out of the game!" << endl;
 	}
 }
 

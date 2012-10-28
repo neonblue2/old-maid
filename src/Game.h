@@ -15,6 +15,7 @@ public:
 	Game();
 
 private:
+	void take(Player players[], int playerNum, bool* playerTurn);
 	void place(Player players[], int playerNum);
 };
 
