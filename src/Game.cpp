@@ -100,8 +100,3 @@ Game::Game() {
 		}
 	}
 }
-
-Game::~Game() {
-	// TODO Auto-generated destructor stub
-}
-
