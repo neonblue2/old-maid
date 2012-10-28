@@ -42,15 +42,7 @@ Game::Game() {
 				cout << "That player is out of the game!" << endl;
 			}
 		} else if (command == "Place") {
-			int c1, c2;
-			while (cin >> c1 >> c2
-					&& (c1 > players[0].cardsInHand() || c2 > players[0].cardsInHand())) {
-				cout << "Not a valid card." << endl << endl;
-				cout << "Place ";
-			}
-			players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
-			cout << endl;
-			Dealer::checkInGame(players, playerNum);
+			place(players, playerNum);
 		} else if (command == "Done") {
 			for (int pN = 1; pN < playerNum; pN++) {
 				if (players[pN].isInGame()) {
@@ -99,4 +91,16 @@ Game::Game() {
 			break;
 		}
 	}
+}
+
+void Game::place(Player players[], int playerNum) {
+	int c1, c2;
+	while (cin >> c1 >> c2
+			&& (c1 > players[0].cardsInHand() || c2 > players[0].cardsInHand())) {
+		cout << "Not a valid card." << endl << endl;
+		cout << "Place ";
+	}
+	players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
+	cout << endl;
+	Dealer::checkInGame(players, playerNum);
 }

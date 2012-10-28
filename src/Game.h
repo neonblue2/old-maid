@@ -13,6 +13,9 @@
 class Game {
 public:
 	Game();
+
+private:
+	void place(Player players[], int playerNum);
 };
 
 #endif /* GAME_H_ */
