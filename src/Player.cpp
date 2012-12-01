@@ -26,20 +26,16 @@ void Player::placePair(Card c1, Card c2) {
 }
 
 void Player::loseCard(Card card) {
-	int loc;
 	for (int i = 0; i < inHand; i++) {
 		if (hand[i] == card) {
-			hand[i].setSuit("");
-			hand[i].setValue("");
 			inHand--;
-			loc = i;
+			hand[i].setSuit(hand[inHand].getSuit());
+			hand[i].setValue(hand[inHand].getValue());
+			hand[inHand].setSuit("");
+			hand[inHand].setValue("");
 			break;
 		}
 	}
-	hand[loc].setSuit(hand[inHand].getSuit());
-	hand[loc].setValue(hand[inHand].getValue());
-	hand[inHand].setSuit("");
-	hand[inHand].setValue("");
 }
 
 void Player::leaveGame() {
