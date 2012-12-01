@@ -12,7 +12,7 @@ using namespace std;
 Game::Game() {
 	Deck deck;
 	string command;
-	bool playerTurn = true;
+	playerTurn = true;
 	int playerNum;
 
 	cout << "Number of players: ";
@@ -29,11 +29,11 @@ Game::Game() {
 	while (cin >> command) {
 		cout << endl;
 		if (command == "Take" && playerTurn) {
-			take(players, playerNum, &playerTurn);
+			take(players, playerNum);
 		} else if (command == "Place") {
 			place(players, playerNum);
 		} else if (command == "Done") {
-			done(players, playerNum, &playerTurn);
+			done(players, playerNum);
 		}
 		if (players[0].isInGame()) {
 			int playersIn = 1;
@@ -60,7 +60,7 @@ Game::Game() {
 	}
 }
 
-void Game::take(Player players[], int playerNum, bool* playerTurn) {
+void Game::take(Player players[], int playerNum) {
 	int player;
 	cin >> player;
 	if (players[player].isInGame()) {
@@ -69,7 +69,7 @@ void Game::take(Player players[], int playerNum, bool* playerTurn) {
 		players[0].recieveCard(chosenCard);
 		cout << "You received the " << chosenCard << endl << endl;
 		Dealer::checkInGame(players, playerNum);
-		*playerTurn = false;
+		playerTurn = false;
 	} else {
 		cout << "That player is out of the game!" << endl;
 	}
@@ -87,7 +87,7 @@ void Game::place(Player players[], int playerNum) {
 	Dealer::checkInGame(players, playerNum);
 }
 
-void Game::done(Player players[], int playerNum, bool* playerTurn) {
+void Game::done(Player players[], int playerNum) {
 	for (int pN = 1; pN < playerNum; pN++) {
 		if (players[pN].isInGame()) {
 			int chosenPlayer;
@@ -110,5 +110,5 @@ void Game::done(Player players[], int playerNum, bool* playerTurn) {
 			Dealer::checkInGame(players, playerNum);
 		}
 	}
-	*playerTurn = true;
+	playerTurn = true;
 }

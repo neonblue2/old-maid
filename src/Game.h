@@ -15,9 +15,11 @@ public:
 	Game();
 
 private:
-	void take(Player players[], int playerNum, bool* playerTurn);
+	bool playerTurn;
+
+	void take(Player players[], int playerNum);
 	void place(Player players[], int playerNum);
-	void done(Player players[], int playerNum, bool* playerTurn);
+	void done(Player players[], int playerNum);
 };
 
 #endif /* GAME_H_ */
