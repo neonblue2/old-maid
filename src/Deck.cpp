@@ -13,7 +13,7 @@ Deck::Deck() {
 				deck[loc].setSuit(suits[s]);
 				deck[loc].setValue(values[v]);
 			} else {
-				v--; //To counter to increment in the loop
+				v--; //To counter the increment in the loop
 			}
 		}
 	}
