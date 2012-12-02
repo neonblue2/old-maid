@@ -20,6 +20,8 @@ private:
 	void take(Player players[], int playerNum);
 	void place(Player players[], int playerNum);
 	void done(Player players[], int playerNum);
+
+	string toLower(string s);
 };
 
 #endif /* GAME_H_ */

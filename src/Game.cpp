@@ -27,12 +27,13 @@ Game::Game() {
 	cout << endl;
 
 	while (cin >> command) {
+		command = toLower(command);
 		cout << endl;
-		if (command == "Take" && playerTurn) {
+		if (command == "take" && playerTurn) {
 			take(players, playerNum);
-		} else if (command == "Place") {
+		} else if (command == "place") {
 			place(players, playerNum);
-		} else if (command == "Done") {
+		} else if (command == "done") {
 			done(players, playerNum);
 		}
 		if (players[0].isInGame()) {
@@ -111,4 +112,11 @@ void Game::done(Player players[], int playerNum) {
 		}
 	}
 	playerTurn = true;
+}
+
+string Game::toLower(string s) {
+	for (std::size_t i = 0; i < s.length(); i++) {
+		s[i] = tolower((int)s[i]);
+	}
+	return s;
 }
