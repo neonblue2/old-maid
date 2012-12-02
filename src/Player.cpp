@@ -3,8 +3,19 @@
 using namespace std;
 
 Player::Player() {
+	skill = 100;
 	inHand = 0;
 	inGame = true;
+}
+
+void Player::setSkill(string gameDifficulty) {
+	if (gameDifficulty == "Easy") {
+		skill = rand() % 33 + 1;
+	} else if (gameDifficulty == "Medium") {
+		skill = rand() % 34 + 34;
+	} else if (gameDifficulty == "Hard") {
+		skill = rand() % 33 + 68;
+	}
 }
 
 void Player::recieveCard(Card card) {
@@ -19,8 +30,10 @@ void Player::placePair(Card c1, Card c2) {
 			(c1.getSuit() == "Club" && c2.getSuit() == "Spade") ||
 			(c1.getSuit() == "Heart" && c2.getSuit() == "Diamond") ||
 			(c1.getSuit() == "Diamond" && c2.getSuit() == "Heart")) {
+			if (skill > (rand() % 100 + 1) || inHand == 2) {
 				loseCard(c1);
 				loseCard(c2);
+			}
 		}
 	}
 }

@@ -7,6 +7,7 @@
 class Player {
 public:
 	Player();
+	void setSkill(string gameDifficulty);
 	void recieveCard(Card card);
 	void placePair(Card c1, Card c2);
 	void loseCard(Card card);
@@ -19,6 +20,7 @@ public:
 	
 private:
 	Card hand[53];
+	int skill;
 	int inHand;
 	bool inGame;
 };

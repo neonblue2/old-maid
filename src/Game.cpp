@@ -15,11 +15,18 @@ Game::Game() {
 	playerTurn = true;
 	int playerNum;
 
+	cout << "Difficulty: ";
+	cin >> difficulty;
+	cout << endl;
+
 	cout << "Number of players: ";
 	cin >> playerNum;
 	cout << endl;
 
 	Player players[playerNum];
+	for (int i = 1; i < playerNum; i++) {
+		players[i].setSkill(difficulty);
+	}
 
 	Dealer::deal(playerNum, players, deck);
 
