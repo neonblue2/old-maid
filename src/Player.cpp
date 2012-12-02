@@ -9,11 +9,11 @@ Player::Player() {
 }
 
 void Player::setSkill(string gameDifficulty) {
-	if (gameDifficulty == "Easy") {
+	if (gameDifficulty == "easy") {
 		skill = rand() % 33 + 1;
-	} else if (gameDifficulty == "Medium") {
+	} else if (gameDifficulty == "medium") {
 		skill = rand() % 34 + 34;
-	} else if (gameDifficulty == "Hard") {
+	} else if (gameDifficulty == "hard") {
 		skill = rand() % 33 + 68;
 	}
 }
@@ -30,7 +30,7 @@ void Player::placePair(Card c1, Card c2) {
 			(c1.getSuit() == "Club" && c2.getSuit() == "Spade") ||
 			(c1.getSuit() == "Heart" && c2.getSuit() == "Diamond") ||
 			(c1.getSuit() == "Diamond" && c2.getSuit() == "Heart")) {
-			if (skill > (rand() % 100 + 1) || inHand == 2) {
+			if (skill >= (rand() % 100 + 1) || inHand == 2) {
 				loseCard(c1);
 				loseCard(c2);
 			}

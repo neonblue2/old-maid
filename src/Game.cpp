@@ -6,6 +6,7 @@
  */
 
 #include "Game.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ Game::Game() {
 
 	Player players[playerNum];
 	for (int i = 1; i < playerNum; i++) {
-		players[i].setSkill(difficulty);
+		players[i].setSkill(Utils::toLower(difficulty));
 	}
 
 	Dealer::deal(playerNum, players, deck);
@@ -34,7 +35,7 @@ Game::Game() {
 	cout << endl;
 
 	while (cin >> command) {
-		command = toLower(command);
+		command = Utils::toLower(command);
 		cout << endl;
 		if (command == "take" && playerTurn) {
 			take(players, playerNum);
@@ -119,11 +120,4 @@ void Game::done(Player players[], int playerNum) {
 		}
 	}
 	playerTurn = true;
-}
-
-string Game::toLower(string s) {
-	for (std::size_t i = 0; i < s.length(); i++) {
-		s[i] = tolower((int)s[i]);
-	}
-	return s;
 }
