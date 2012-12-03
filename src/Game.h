@@ -21,6 +21,7 @@ private:
 	void take(Player players[], int playerNum);
 	void place(Player players[], int playerNum);
 	void done(Player players[], int playerNum);
+	void printOppNumCardsInHand(Player players[], int playerNum);
 };
 
 #endif /* GAME_H_ */

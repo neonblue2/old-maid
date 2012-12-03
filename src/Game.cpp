@@ -18,7 +18,6 @@ Game::Game() {
 
 	cout << "Difficulty: ";
 	cin >> difficulty;
-	cout << endl;
 
 	cout << "Number of players: ";
 	cin >> playerNum;
@@ -30,6 +29,8 @@ Game::Game() {
 	}
 
 	Dealer::deal(playerNum, players, deck);
+
+	printOppNumCardsInHand(players, playerNum);
 
 	players[0].printHand();
 	cout << endl;
@@ -55,11 +56,7 @@ Game::Game() {
 				cout << "You lost the game!" << endl;
 				break;
 			}
-			for (int i = 1; i < playerNum; i++) {
-				cout << "Player " << i << " has " << players[i].cardsInHand()
-					<< " cards in hand." << endl;
-			}
-			cout << endl;
+			printOppNumCardsInHand(players, playerNum);
 			players[0].printHand();
 			cout << endl;
 		} else {
@@ -120,4 +117,12 @@ void Game::done(Player players[], int playerNum) {
 		}
 	}
 	playerTurn = true;
+}
+
+void Game::printOppNumCardsInHand(Player players[], int playerNum) {
+	for (int i = 1; i < playerNum; i++) {
+		cout << "Player " << i << " has " << players[i].cardsInHand()
+			<< " cards in hand." << endl;
+	}
+	cout << endl;
 }
