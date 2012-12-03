@@ -56,13 +56,8 @@ void Player::leaveGame() {
 }
 
 Card Player::randCard() {
-	Card card;
-	
 	int location = rand() % inHand;
-	card.setValue(hand[location].getValue());
-	card.setSuit(hand[location].getSuit());
-	
-	return card;
+	return hand[location];
 }
 
 Card Player::specificCard(int location) {
