@@ -69,15 +69,21 @@ Game::Game() {
 void Game::take(Player players[], int playerNum) {
 	int player;
 	cin >> player;
-	if (players[player].isInGame()) {
-		Card chosenCard = players[player].randCard();
-		players[player].loseCard(chosenCard);
-		players[0].recieveCard(chosenCard);
-		cout << "You received the " << chosenCard << endl << endl;
-		Dealer::checkInGame(players, playerNum);
-		playerTurn = false;
+	if (player > 0 && player < playerNum) {
+		if (players[player].isInGame()) {
+			Card chosenCard = players[player].randCard();
+			players[player].loseCard(chosenCard);
+			players[0].recieveCard(chosenCard);
+			cout << "You received the " << chosenCard << endl << endl;
+			Dealer::checkInGame(players, playerNum);
+			playerTurn = false;
+		} else {
+			cout << "That player is out of the game!" << endl;
+		}
+	} else if (player == 0) {
+		cout << "You can't take a card from yourself!" << endl;
 	} else {
-		cout << "That player is out of the game!" << endl;
+		cout << "That player doesn't exist!" << endl;
 	}
 }
 
