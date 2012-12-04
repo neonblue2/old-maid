@@ -12,6 +12,7 @@ using namespace std;
 
 Game::Game() {
 	Deck deck;
+	string difficulty;
 	string command;
 	playerTurn = true;
 	int playerNum;

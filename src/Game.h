@@ -15,7 +15,6 @@ public:
 	Game();
 
 private:
-	string difficulty;
 	bool playerTurn;
 
 	void take(Player players[], int playerNum);
