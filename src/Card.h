@@ -9,8 +9,8 @@ using namespace std;
 class Card {
 public:
 	Card();
-	void setSuit(string suit);
-	void setValue(string value);
+	void setSuit(const string suit);
+	void setValue(const string value);
 	string getSuit();
 	string getValue();
 	

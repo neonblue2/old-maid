@@ -5,11 +5,11 @@ Card::Card() {
 	value_ = "";
 }
 
-void Card::setSuit(string suit) {
+void Card::setSuit(const string suit) {
 	suit_ = suit;
 }
 
-void Card::setValue(string value) {
+void Card::setValue(const string value) {
 	value_ = value;
 }
 

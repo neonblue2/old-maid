@@ -26,7 +26,7 @@ Deck::Deck() {
 	}
 }
 
-Card Deck::cardLoc(int location) {
+Card Deck::cardLoc(const int location) {
 	return deck[location];
 }
 

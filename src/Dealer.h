@@ -13,8 +13,8 @@
 
 class Dealer {
 public:
-	static void deal(int playerNum, Player players[], Deck deck);
-	static void checkInGame(Player player[], int playerNum);
+	static void deal(const int playerNum, Player players[], Deck deck);
+	static void checkInGame(const int playerNum, Player player[]);
 };
 
 #endif /* DEALER_H_ */

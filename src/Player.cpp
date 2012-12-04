@@ -8,7 +8,7 @@ Player::Player() {
 	inGame = true;
 }
 
-void Player::setSkill(string gameDifficulty) {
+void Player::setSkill(const string gameDifficulty) {
 	if (gameDifficulty == "easy") {
 		skill = rand() % 33 + 1;
 	} else if (gameDifficulty == "medium") {
@@ -18,7 +18,7 @@ void Player::setSkill(string gameDifficulty) {
 	}
 }
 
-void Player::recieveCard(Card card) {
+void Player::receiveCard(Card card) {
 	hand[inHand].setSuit(card.getSuit());
 	hand[inHand].setValue(card.getValue());
 	inHand++;

@@ -17,10 +17,10 @@ public:
 private:
 	bool playerTurn;
 
-	void take(Player players[], int playerNum);
-	void place(Player players[], int playerNum);
-	void done(Player players[], int playerNum);
-	void printOppNumCardsInHand(Player players[], int playerNum);
+	void take(const int playerNum, Player players[]);
+	void place(const int playerNum, Player players[]);
+	void done(const int playerNum, Player players[]);
+	void printOppNumCardsInHand(const int playerNum, Player players[]);
 };
 
 #endif /* GAME_H_ */

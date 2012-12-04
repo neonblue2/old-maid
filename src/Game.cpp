@@ -31,7 +31,7 @@ Game::Game() {
 
 	Dealer::deal(playerNum, players, deck);
 
-	printOppNumCardsInHand(players, playerNum);
+	printOppNumCardsInHand(playerNum, players);
 
 	players[0].printHand();
 	cout << endl;
@@ -40,11 +40,11 @@ Game::Game() {
 		command = Utils::toLower(command);
 		cout << endl;
 		if (command == "take" && playerTurn) {
-			take(players, playerNum);
+			take(playerNum, players);
 		} else if (command == "place") {
-			place(players, playerNum);
+			place(playerNum, players);
 		} else if (command == "done") {
-			done(players, playerNum);
+			done(playerNum, players);
 		}
 		if (players[0].isInGame()) {
 			int playersIn = 1;
@@ -57,7 +57,7 @@ Game::Game() {
 				cout << "You lost the game!" << endl;
 				break;
 			}
-			printOppNumCardsInHand(players, playerNum);
+			printOppNumCardsInHand(playerNum, players);
 			players[0].printHand();
 			cout << endl;
 		} else {
@@ -67,16 +67,16 @@ Game::Game() {
 	}
 }
 
-void Game::take(Player players[], int playerNum) {
+void Game::take(const int playerNum, Player players[]) {
 	int player;
 	cin >> player;
 	if (player > 0 && player < playerNum) {
 		if (players[player].isInGame()) {
 			Card chosenCard = players[player].randCard();
 			players[player].loseCard(chosenCard);
-			players[0].recieveCard(chosenCard);
+			players[0].receiveCard(chosenCard);
 			cout << "You received the " << chosenCard << endl << endl;
-			Dealer::checkInGame(players, playerNum);
+			Dealer::checkInGame(playerNum, players);
 			playerTurn = false;
 		} else {
 			cout << "That player is out of the game!" << endl;
@@ -88,7 +88,7 @@ void Game::take(Player players[], int playerNum) {
 	}
 }
 
-void Game::place(Player players[], int playerNum) {
+void Game::place(const int playerNum, Player players[]) {
 	int c1, c2;
 	while (cin >> c1 >> c2
 			&& (c1 > players[0].cardsInHand() || c2 > players[0].cardsInHand())) {
@@ -97,10 +97,10 @@ void Game::place(Player players[], int playerNum) {
 	}
 	players[0].placePair(players[0].specificCard(c1-1), players[0].specificCard(c2-1));
 	cout << endl;
-	Dealer::checkInGame(players, playerNum);
+	Dealer::checkInGame(playerNum, players);
 }
 
-void Game::done(Player players[], int playerNum) {
+void Game::done(const int playerNum, Player players[]) {
 	for (int pN = 1; pN < playerNum; pN++) {
 		if (players[pN].isInGame()) {
 			int chosenPlayer;
@@ -109,8 +109,8 @@ void Game::done(Player players[], int playerNum) {
 			} while (chosenPlayer == pN || !players[chosenPlayer].isInGame());
 			Card chosenCard = players[chosenPlayer].randCard();
 			players[chosenPlayer].loseCard(chosenCard);
-			players[pN].recieveCard(chosenCard);
-			Dealer::checkInGame(players, playerNum);
+			players[pN].receiveCard(chosenCard);
+			Dealer::checkInGame(playerNum, players);
 			if (chosenPlayer == 0) {
 				cout << "You lost the " << chosenCard << endl;
 			}
@@ -120,13 +120,13 @@ void Game::done(Player players[], int playerNum) {
 						players[pN].specificCard(j));
 				}
 			}
-			Dealer::checkInGame(players, playerNum);
+			Dealer::checkInGame(playerNum, players);
 		}
 	}
 	playerTurn = true;
 }
 
-void Game::printOppNumCardsInHand(Player players[], int playerNum) {
+void Game::printOppNumCardsInHand(const int playerNum, Player players[]) {
 	for (int i = 1; i < playerNum; i++) {
 		cout << "Player " << i << " has " << players[i].cardsInHand()
 			<< " cards in hand." << endl;

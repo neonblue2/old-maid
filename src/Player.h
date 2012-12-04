@@ -7,8 +7,8 @@
 class Player {
 public:
 	Player();
-	void setSkill(string gameDifficulty);
-	void recieveCard(Card card);
+	void setSkill(const string gameDifficulty);
+	void receiveCard(Card card);
 	void placePair(Card c1, Card c2);
 	void loseCard(Card card);
 	void leaveGame();

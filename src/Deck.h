@@ -6,7 +6,7 @@
 class Deck {
 public:
 	Deck();
-	Card cardLoc(int location);
+	Card cardLoc(const int location);
 	void printDeck();
 	
 private:
