@@ -38,3 +38,13 @@ void Dealer::checkInGame(const int playerNum, Player player[]) {
 		}
 	}
 }
+
+int Dealer::maxCardsInHands(const int playerNum, Player players[], const int takingPlayer) {
+	int maxCards = 0;
+	for (int i = 0; i < playerNum; i++) {
+		if (playerNum != takingPlayer) {
+			maxCards = (players[i].cardsInHand() > maxCards) ? (players[i].cardsInHand()) : maxCards;
+		}
+	}
+	return maxCards;
+}

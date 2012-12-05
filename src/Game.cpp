@@ -106,7 +106,7 @@ void Game::done(const int playerNum, Player players[]) {
 			int chosenPlayer;
 			do {
 				chosenPlayer = rand() % playerNum;
-			} while (chosenPlayer == pN || !players[chosenPlayer].isInGame() || players[chosenPlayer].cardsInHand() == 1);
+			} while (chosenPlayer == pN || !players[chosenPlayer].isInGame() || (players[chosenPlayer].cardsInHand() == 1 && Dealer::maxCardsInHands(playerNum, players, pN) > 1));
 			Card chosenCard = players[chosenPlayer].randCard();
 			players[chosenPlayer].loseCard(chosenCard);
 			players[pN].receiveCard(chosenCard);

@@ -15,6 +15,7 @@ class Dealer {
 public:
 	static void deal(const int playerNum, Player players[], Deck deck);
 	static void checkInGame(const int playerNum, Player player[]);
+	static int maxCardsInHands(const int playerNum, Player players[], const int takingPlayer);
 };
 
 #endif /* DEALER_H_ */
